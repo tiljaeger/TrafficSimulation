@@ -4,7 +4,7 @@
 
 /* Implementation of class "MessageQueue" */
 
-/* 
+ 
 template <typename T>
 T MessageQueue<T>::receive()
 {
@@ -12,7 +12,7 @@ T MessageQueue<T>::receive()
     // to wait for and receive new messages and pull them from the queue using move semantics. 
     // The received object should then be returned by the receive function. 
 }
-*/
+
 template <typename T>
 void MessageQueue<T>::send(T &&msg)
 {
@@ -68,7 +68,7 @@ void TrafficLight::cycleThroughPhases()
         std::random_device rd;
         std::mt19937 eng(rd());
         std::uniform_int_distribution<> distr(4000, 6000);
-        cycleDuration = distr(eng);
+        cycleDuration = (double)distr(eng)/1000;
 
         long timeOfLastUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - currentPointIntime).count();
 
@@ -83,7 +83,7 @@ void TrafficLight::cycleThroughPhases()
 
             }
 
-            _messageQueue.send(std::move(_currentPhase));
+            //_messageQueue.send(std::move(_currentPhase));
 
             currentPointIntime = std::chrono::system_clock::now();
         }     
